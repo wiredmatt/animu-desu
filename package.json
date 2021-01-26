@@ -4,6 +4,11 @@
   "description": "Unofficial API for gogoanime.so",
   "main": "lib/index.js",
   "types": "lib",
+  "homepage": "https://github.com/system32uwu/animu-desu#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/system32uwu/animu-desu.git"
+  },
   "scripts": {
     "build": "tsc -p ."
   },

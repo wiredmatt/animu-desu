@@ -20,6 +20,18 @@ yarn add animu-desu
 
 ## Usage
 
+You can import only the function(s) you need, or the whole package.
+
+```js
+import { getPopular } from "animu-desu";
+
+getPopular(1)...
+
+import AnimuGetter from "animu-desu";
+
+AnimuGetter.getPopular(1)...
+```
+
 Get the popular animes
 
 ```js

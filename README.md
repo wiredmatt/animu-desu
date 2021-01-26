@@ -112,7 +112,7 @@ getEpisodeLinks("one-piece", 959)
 
 ## NOTE
 
-This package will only work in a node enviorement, as it uses cheerio to do web scraping.
+This package will only work in a node environment, as it uses cheerio to do web scraping.
 
 ## License
 

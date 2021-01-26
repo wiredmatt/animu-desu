@@ -35,7 +35,7 @@ interface AnimeEpisode {
   quality: string;
 }
 
-async function getPopular(page: int): Promise<BaseAnime[]> {
+export async function getPopular(page: int): Promise<BaseAnime[]> {
   let results = [] as BaseAnime[];
   const siteUrl = `${baseURL}popular.html?page=${page}`;
 
@@ -64,7 +64,7 @@ async function getPopular(page: int): Promise<BaseAnime[]> {
   return results;
 }
 
-async function getAnimeDetails(id: string): Promise<AnimeDetails> {
+export async function getAnimeDetails(id: string): Promise<AnimeDetails> {
   const siteUrl = `${baseURL}category/${id}`;
 
   let type = "";
@@ -82,7 +82,6 @@ async function getAnimeDetails(id: string): Promise<AnimeDetails> {
   await axios
     .get(siteUrl)
     .then(async (response) => {
-      console.log("I got a response");
       const html = response.data;
       try {
         var $ = cheerio.load(html);
@@ -150,7 +149,7 @@ async function getAnimeDetails(id: string): Promise<AnimeDetails> {
   return result;
 }
 
-async function search(word: string, page: int): Promise<BaseAnime[]> {
+export async function search(word: string, page: int): Promise<BaseAnime[]> {
   let results = [] as BaseAnime[];
 
   const siteUrl = `${baseURL}search.html?keyword=${word}&page=${page}`;
@@ -181,7 +180,7 @@ async function search(word: string, page: int): Promise<BaseAnime[]> {
   return results;
 }
 
-async function getEpisodeLinks(id: string, episode: int) {
+export async function getEpisodeLinks(id: string, episode: int) {
   let animeStreamingLinkGogo: string;
   let finalLinksList = [] as AnimeEpisode[];
 
@@ -242,7 +241,7 @@ async function getEpisodeLinks(id: string, episode: int) {
   return finalLinksList;
 }
 
-async function searchByGenre(genre: string, page: int): Promise<BaseAnime[]> {
+export async function searchByGenre(genre: string, page: int): Promise<BaseAnime[]> {
   let results = [] as BaseAnime[];
 
   const siteUrl = `${baseURL}genre/${genre}?page=${page}`;
@@ -273,7 +272,7 @@ async function searchByGenre(genre: string, page: int): Promise<BaseAnime[]> {
   return results;
 }
 
-async function getRecentlyAdded(page: int): Promise<RecentlyAddedAnime[]> {
+export async function getRecentlyAdded(page: int): Promise<RecentlyAddedAnime[]> {
   let results = [] as RecentlyAddedAnime[];
 
   const siteUrl = `${baseURL}?page=${page}`;
@@ -309,7 +308,7 @@ async function getRecentlyAdded(page: int): Promise<RecentlyAddedAnime[]> {
   return results;
 }
 
-async function getGenreList(): Promise<string[]> {
+export async function getGenreList(): Promise<string[]> {
   let list = [] as string[];
   await axios
     .get(baseURL)
@@ -333,13 +332,3 @@ async function getGenreList(): Promise<string[]> {
 
   return list;
 }
-
-export default {
-  getPopular,
-  getAnimeDetails,
-  search,
-  getEpisodeLinks,
-  searchByGenre,
-  getRecentlyAdded,
-  getGenreList,
-};

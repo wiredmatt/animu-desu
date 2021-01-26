@@ -24,21 +24,12 @@ interface AnimeEpisode {
     link: string;
     quality: string;
 }
-declare function getPopular(page: int): Promise<BaseAnime[]>;
-declare function getAnimeDetails(id: string): Promise<AnimeDetails>;
-declare function search(word: string, page: int): Promise<BaseAnime[]>;
-declare function getEpisodeLinks(id: string, episode: int): Promise<AnimeEpisode[]>;
-declare function searchByGenre(genre: string, page: int): Promise<BaseAnime[]>;
-declare function getRecentlyAdded(page: int): Promise<RecentlyAddedAnime[]>;
-declare function getGenreList(): Promise<string[]>;
-declare const _default: {
-    getPopular: typeof getPopular;
-    getAnimeDetails: typeof getAnimeDetails;
-    search: typeof search;
-    getEpisodeLinks: typeof getEpisodeLinks;
-    searchByGenre: typeof searchByGenre;
-    getRecentlyAdded: typeof getRecentlyAdded;
-    getGenreList: typeof getGenreList;
-};
-export default _default;
+export declare function getPopular(page: int): Promise<BaseAnime[]>;
+export declare function getAnimeDetails(id: string): Promise<AnimeDetails>;
+export declare function search(word: string, page: int): Promise<BaseAnime[]>;
+export declare function getEpisodeLinks(id: string, episode: int): Promise<AnimeEpisode[]>;
+export declare function searchByGenre(genre: string, page: int): Promise<BaseAnime[]>;
+export declare function getRecentlyAdded(page: int): Promise<RecentlyAddedAnime[]>;
+export declare function getGenreList(): Promise<string[]>;
+export {};
 //# sourceMappingURL=index.d.ts.map

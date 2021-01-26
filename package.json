@@ -5,8 +5,7 @@
   "main": "lib/index.js",
   "types": "lib",
   "scripts": {
-    "build": "tsc -p .",
-    "dev": "ts-node ./src/index.ts"
+    "build": "tsc -p ."
   },
   "keywords": [
     "gogoanime",

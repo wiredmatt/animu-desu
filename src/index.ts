@@ -57,7 +57,7 @@ export async function getPopular(page: int): Promise<BaseAnime[]> {
     })
     .catch((error) => {
       throw {
-        error: error.code,
+        error: error.message
       };
     });
 
@@ -142,7 +142,7 @@ export async function getAnimeDetails(id: string): Promise<AnimeDetails> {
     })
     .catch((error) => {
       throw {
-        error: error.message,
+        error: error.message
       };
     });
 
@@ -173,7 +173,7 @@ export async function search(word: string, page: int): Promise<BaseAnime[]> {
     })
     .catch((error) => {
       throw {
-        error: error.message,
+        error: error.message
       };
     });
 
@@ -234,7 +234,7 @@ export async function getEpisodeLinks(id: string, episode: int) {
     })
     .catch((error) => {
       throw {
-        error: error.message,
+        error: error.message
       };
     });
 
@@ -265,7 +265,7 @@ export async function searchByGenre(genre: string, page: int): Promise<BaseAnime
     })
     .catch((error) => {
       throw {
-        error: error.message,
+        error: error.message
       };
     });
 
@@ -302,7 +302,9 @@ export async function getRecentlyAdded(page: int): Promise<RecentlyAddedAnime[]>
       }
     })
     .catch((error) => {
-      throw error.message;
+      throw {
+        error: error.message
+      };
     });
 
   return results;
@@ -327,7 +329,9 @@ export async function getGenreList(): Promise<string[]> {
       }
     })
     .catch((error) => {
-      throw error.message;
+      throw {
+        error: error.message
+      };
     });
 
   return list;

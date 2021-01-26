@@ -134,4 +134,4 @@ This package will only work in a node environment, as it uses cheerio to do web 
 
 # License
 
-[MIT](http://vjpr.mit-license.org)
+[MIT](https://github.com/system32uwu/animu-desu/blob/main/LICENSE.md)

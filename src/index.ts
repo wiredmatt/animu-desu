@@ -1,39 +1,12 @@
 import cheerio from "cheerio";
 import axios from "axios";
+import { BaseAnime, AnimeDetails, Released, AnimeEpisode, RecentlyAddedAnime } from "./types";
 
 const baseURL = "https://gogoanime.so/";
 
 type int = number;
 
-interface BaseAnime {
-  id: string;
-  title: string;
-  image: string;
-}
-
-interface AnimeDetails extends BaseAnime {
-  type: string;
-  summary: string;
-  released: Released;
-  genres: string[];
-  status: string;
-  totalEpisodes: number;
-  otherName: string;
-}
-
-interface RecentlyAddedAnime extends BaseAnime {
-  episodeNumber: number;
-}
-
-interface Released {
-  season: string;
-  year: number;
-}
-
-interface AnimeEpisode {
-  link: string;
-  quality: string;
-}
+export {BaseAnime,AnimeDetails,Released,AnimeEpisode,RecentlyAddedAnime};
 
 export async function getPopular(page: int): Promise<BaseAnime[]> {
   let results = [] as BaseAnime[];

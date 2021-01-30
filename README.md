@@ -22,7 +22,7 @@ yarn add animu-desu
 
 You can import only the function(s) you need, or the whole package.
 
-###With ES Module syntax
+### With ES Module syntax
 
 ```js
 
@@ -40,7 +40,7 @@ import AnimuGetter from "animu-desu";
 AnimuGetter.getPopular(1)...
 ```
 
-###With CommonJS syntax
+### With CommonJS syntax
 
 ```js
 
@@ -50,7 +50,7 @@ AnimuGetter.getPopular(1)...
 
 ```
 
-###Get the popular animes
+### Get the popular animes
 
 ```js
 import { getPopular } from "animu-desu";
@@ -61,7 +61,7 @@ getPopular(1)
   .catch((err) => console.log(err));
 ```
 
-###Get the list of genres
+### Get the list of genres
 
 ```js
 import { getGenreList } from "animu-desu";
@@ -71,7 +71,7 @@ getGenreList()
   .catch((err) => console.log(err));
 ```
 
-###Search anime by genre
+### Search anime by genre
 
 ```js
 import { searchByGenre } from "animu-desu";
@@ -82,7 +82,7 @@ searchByGenre("action", 1)
   .catch((err) => console.log(err));
 ```
 
-###Search anime by query
+### Search anime by query
 
 ```js
 import AnimuGetter from "animu-desu";
@@ -95,7 +95,7 @@ search("One piece", 1)
   .catch((err) => console.log(err));
 ```
 
-###Search recently added anime episodes
+### Search recently added anime episodes
 
 ```js
 import { getRecentlyAdded } from "animu-desu";
@@ -106,7 +106,7 @@ getRecentlyAdded(1)
   .catch((err) => console.log(err));
 ```
 
-###Get details of an anime
+### Get details of an anime
 
 ```js
 import { getAnimeDetails } from "animu-desu";
@@ -117,7 +117,7 @@ getAnimeDetails("one-piece")
   .catch((err) => console.log(err));
 ```
 
-###Get links for an episode of an anime
+### Get links for an episode of an anime
 
 ```js
 import { getEpisodeLinks } from "animu-desu";

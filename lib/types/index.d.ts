@@ -6,7 +6,7 @@ export interface BaseAnime {
 export interface AnimeDetails extends BaseAnime {
     type: string;
     summary: string;
-    released: Released;
+    released: number;
     genres: string[];
     status: string;
     totalEpisodes: number;
@@ -14,10 +14,6 @@ export interface AnimeDetails extends BaseAnime {
 }
 export interface RecentlyAddedAnime extends BaseAnime {
     episodeNumber: number;
-}
-export interface Released {
-    season: string;
-    year: number;
 }
 export interface AnimeEpisode {
     link: string;

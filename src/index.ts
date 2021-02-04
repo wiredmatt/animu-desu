@@ -1,12 +1,18 @@
 import cheerio from "cheerio";
 import axios from "axios";
-import { BaseAnime, AnimeDetails, Released, AnimeEpisode, RecentlyAddedAnime } from "./types";
+import {
+  BaseAnime,
+  AnimeAndDate,
+  AnimeDetails,
+  AnimeEpisode,
+  RecentlyAddedAnime,
+} from "./types";
 
 const baseURL = "https://gogoanime.so/";
 
 type int = number;
 
-export {BaseAnime,AnimeDetails,Released,AnimeEpisode,RecentlyAddedAnime};
+export { BaseAnime, AnimeDetails, AnimeEpisode, RecentlyAddedAnime };
 
 export async function getPopular(page: int): Promise<BaseAnime[]> {
   let results = [] as BaseAnime[];
@@ -30,7 +36,7 @@ export async function getPopular(page: int): Promise<BaseAnime[]> {
     })
     .catch((error) => {
       throw {
-        error: error.message
+        error: error.message,
       };
     });
 
@@ -42,10 +48,10 @@ export async function getAnimeDetails(id: string): Promise<AnimeDetails> {
 
   let type = "";
   let summary = "";
-  let released = {} as Released;
+  let released = 0;
   let status = "";
   let genres = [] as string[];
-  let otherName = "";
+  let otherNames = [] as string[];
   let title = "";
   let image = "";
   let totalEpisodes = 0;
@@ -63,20 +69,9 @@ export async function getAnimeDetails(id: string): Promise<AnimeDetails> {
 
         $("p.type").each((index, element) => {
           if ("Type: " == $(element).children("span").text()) {
-            let releaseDateAndType = $(element).text().slice(5).split(" ");
-
-            releaseDateAndType = releaseDateAndType.map((el) => el.trim());
-
-            releaseDateAndType = releaseDateAndType.filter(Boolean);
-
-            let season = releaseDateAndType[0];
-            let year = Number(releaseDateAndType[1]);
-
-            //example: Fall 2017
-            released = { season, year };
-
-            //anime,ova,ona,special...
-            type = releaseDateAndType[2];
+            let tmpType = $(element).text().slice(5).split(" ");
+            tmpType = tmpType.map((el) => el.trim());
+            type = tmpType.filter(Boolean).join(" ");
           } else if ("Plot Summary: " == $(element).children("span").text()) {
             summary = $(element).text().slice(13).trimStart().trimEnd();
           } else if ("Status: " == $(element).children("span").text()) {
@@ -91,7 +86,7 @@ export async function getAnimeDetails(id: string): Promise<AnimeDetails> {
             genres = genresByComma.split(",");
             genres = genres.map((g) => g.trimStart());
           } else if ("Other name: " == $(element).children("span").text()) {
-            otherName = $(element).text().slice(11).trimStart();
+            otherNames = $(element).text().slice(11).trimStart().split(",");
           }
         });
         totalEpisodes = Number(
@@ -107,7 +102,7 @@ export async function getAnimeDetails(id: string): Promise<AnimeDetails> {
           genres,
           status,
           totalEpisodes,
-          otherName,
+          otherNames,
         };
       } catch (error) {
         throw error;
@@ -115,15 +110,15 @@ export async function getAnimeDetails(id: string): Promise<AnimeDetails> {
     })
     .catch((error) => {
       throw {
-        error: error.message
+        error: error.message,
       };
     });
 
   return result;
 }
 
-export async function search(word: string, page: int): Promise<BaseAnime[]> {
-  let results = [] as BaseAnime[];
+export async function search(word: string, page: int): Promise<AnimeAndDate[]> {
+  let results = [] as AnimeAndDate[];
 
   const siteUrl = `${baseURL}search.html?keyword=${word}&page=${page}`;
 
@@ -137,8 +132,15 @@ export async function search(word: string, page: int): Promise<BaseAnime[]> {
           let title = $(element).children("a").attr().title;
           let id = $(element).children("a").attr().href.slice(10);
           let image = $(element).children("a").children("img").attr().src;
+          let released = 0;
 
-          results.push({ title, id, image });
+          $(".released").map((idx, el) => {
+            if (idx === index)
+              released = parseInt(
+                $(el).text().replace("Released: ", "").trim()
+              );
+          });
+          results.push({ title, id, image, released });
         });
       } catch (error) {
         throw error;
@@ -146,7 +148,7 @@ export async function search(word: string, page: int): Promise<BaseAnime[]> {
     })
     .catch((error) => {
       throw {
-        error: error.message
+        error: error.message,
       };
     });
 
@@ -207,14 +209,17 @@ export async function getEpisodeLinks(id: string, episode: int) {
     })
     .catch((error) => {
       throw {
-        error: error.message
+        error: error.message,
       };
     });
 
   return finalLinksList;
 }
 
-export async function searchByGenre(genre: string, page: int): Promise<BaseAnime[]> {
+export async function searchByGenre(
+  genre: string,
+  page: int
+): Promise<BaseAnime[]> {
   let results = [] as BaseAnime[];
 
   const siteUrl = `${baseURL}genre/${genre}?page=${page}`;
@@ -238,14 +243,16 @@ export async function searchByGenre(genre: string, page: int): Promise<BaseAnime
     })
     .catch((error) => {
       throw {
-        error: error.message
+        error: error.message,
       };
     });
 
   return results;
 }
 
-export async function getRecentlyAdded(page: int): Promise<RecentlyAddedAnime[]> {
+export async function getRecentlyAdded(
+  page: int
+): Promise<RecentlyAddedAnime[]> {
   let results = [] as RecentlyAddedAnime[];
 
   const siteUrl = `${baseURL}?page=${page}`;
@@ -276,7 +283,7 @@ export async function getRecentlyAdded(page: int): Promise<RecentlyAddedAnime[]>
     })
     .catch((error) => {
       throw {
-        error: error.message
+        error: error.message,
       };
     });
 
@@ -303,7 +310,7 @@ export async function getGenreList(): Promise<string[]> {
     })
     .catch((error) => {
       throw {
-        error: error.message
+        error: error.message,
       };
     });
 

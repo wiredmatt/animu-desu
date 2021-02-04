@@ -1,6 +1,6 @@
-import { BaseAnime, AnimeDetails, Released, AnimeEpisode, RecentlyAddedAnime } from "./types";
+import { BaseAnime, AnimeDetails, AnimeEpisode, RecentlyAddedAnime } from "./types";
 declare type int = number;
-export { BaseAnime, AnimeDetails, Released, AnimeEpisode, RecentlyAddedAnime };
+export { BaseAnime, AnimeDetails, AnimeEpisode, RecentlyAddedAnime };
 export declare function getPopular(page: int): Promise<BaseAnime[]>;
 export declare function getAnimeDetails(id: string): Promise<AnimeDetails>;
 export declare function search(word: string, page: int): Promise<BaseAnime[]>;

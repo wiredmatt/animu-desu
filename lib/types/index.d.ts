@@ -3,14 +3,16 @@ export interface BaseAnime {
     title: string;
     image: string;
 }
-export interface AnimeDetails extends BaseAnime {
+export interface AnimeAndDate extends BaseAnime {
+    released: number;
+}
+export interface AnimeDetails extends AnimeAndDate {
     type: string;
     summary: string;
-    released: number;
     genres: string[];
     status: string;
     totalEpisodes: number;
-    otherName: string;
+    otherNames: string[];
 }
 export interface RecentlyAddedAnime extends BaseAnime {
     episodeNumber: number;

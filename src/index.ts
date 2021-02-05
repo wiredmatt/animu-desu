@@ -12,7 +12,7 @@ const baseURL = "https://gogoanime.so/";
 
 type int = number;
 
-export { BaseAnime, AnimeDetails, AnimeEpisode, RecentlyAddedAnime };
+export { BaseAnime, AnimeDetails, AnimeEpisode, RecentlyAddedAnime, AnimeAndDate };
 
 export async function getPopular(page: int): Promise<BaseAnime[]> {
   let results = [] as BaseAnime[];

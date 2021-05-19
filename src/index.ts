@@ -8,7 +8,7 @@ import {
   RecentlyAddedAnime,
 } from "./types";
 
-const baseURL = "https://gogoanime.so/";
+const baseURL = "https://www1.gogoanime.ai/";
 
 type int = number;
 

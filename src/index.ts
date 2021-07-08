@@ -8,7 +8,11 @@ import {
   RecentlyAddedAnime,
 } from "./types";
 
-const baseURL = "https://www1.gogoanime.ai/";
+var baseURL = "https://www1.gogoanime.ai/";
+
+export const setBaseURL = (url:string) =>{
+  baseURL = url;
+}
 
 type int = number;
 

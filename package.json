@@ -1,6 +1,6 @@
 {
   "name": "animu-desu",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "Unofficial API for gogoanime.so",
   "main": "lib/index.js",
   "types": "lib",

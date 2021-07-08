@@ -1,4 +1,5 @@
 import { BaseAnime, AnimeAndDate, AnimeDetails, AnimeEpisode, RecentlyAddedAnime } from "./types";
+export declare const setBaseURL: (url: string) => void;
 declare type int = number;
 export { BaseAnime, AnimeDetails, AnimeEpisode, RecentlyAddedAnime, AnimeAndDate };
 export declare function getPopular(page: int): Promise<BaseAnime[]>;
